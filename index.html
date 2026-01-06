@@ -8,12 +8,23 @@
   "three": "https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.module.min.js",
   "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.182.0/examples/jsm/",
   "tweakpane": "https://cdn.jsdelivr.net/npm/tweakpane@4.0.5/dist/tweakpane.min.js",
-  "metis": "https://cdn.jsdelivr.net/gh/Usnul/metis-js@main/js/metis.js",
+  "metis": "./js/metis-adapter.js",
   "metis/wasm": "https://cdn.jsdelivr.net/gh/Usnul/metis-js@main/js/metis.wasm"
 }}</script>
 <style>
   body { margin: 0; overflow: hidden; }
 </style>
+<script>
+  window.Module = {
+    locateFile: function(path) {
+      if (path.endsWith('.wasm')) {
+        return "https://cdn.jsdelivr.net/gh/Usnul/metis-js@main/js/metis.wasm";
+      }
+      return path;
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/Usnul/metis-js@main/js/metis.js"></script>
 </head>
 <body>
 <!-- Your content here -->
